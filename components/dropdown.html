@@ -1,0 +1,22 @@
+<div class="dropdown_container">
+  <div class="rounded_dropdown_label dropdown_label_widget" on-click="toggle">
+    <div class="title">
+      {{#if selected}}
+        {{selected.label}}
+      {{else}}
+        {{placeholder}}
+      {{/if}}
+    </div>
+    <div class="arrow"></div>
+  </div>
+
+  {{#if isOpen}}
+  <div class="rounded_dropdown_body dropdown_body_widget">
+      {{#each items}}
+        <div class="rounded_dropdown_item dropdown_item_widget {{#this === selected}}selected{{/}}" on-click="select">
+          {{label}}
+        </div>
+      {{/each}}
+    </div>
+  {{/if}}
+</div>
