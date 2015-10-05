@@ -22,7 +22,10 @@ var app = new Ractive({
   el: '#root',
 
   // template is a string or parsed Ractive template
-  template: `<Dropdown items="{{items}}"></Dropdown>`,
+  template: `
+    <Dropdown items="{{items}}" on-selected="selectNumber"></Dropdown>
+    {{#if selected}}{{selected}} selected in outer context{{/if}}
+  `,
 
   // components lists the components available to this Ractive instance. It's
   // possible to apply commonly-used ones globally.
@@ -39,8 +42,10 @@ var app = new Ractive({
   // bunch of other lifecycle events available:
   // <http://docs.ractivejs.org/latest/lifecycle-events>
   oninit() {
-    this.findComponent('Dropdown').on('selected', (item) => {
-      this.set('selected', item.value);
+    this.on({
+      selectNumber(item) {
+        this.set('selected', item.value);
+      },
     });
   },
 });
