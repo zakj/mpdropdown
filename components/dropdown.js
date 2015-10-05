@@ -22,7 +22,7 @@ export default Ractive.extend({
     const closer = () => this.set('isOpen', false);
     this.observe('isOpen', (value, previous) => {
       const fn = value ? 'addEventListener' : 'removeEventListener';
-      document[fn]('click', closer)
+      document[fn]('click', closer);
     });
 
     // .on tracks events fired either explicitly with .fire or via
